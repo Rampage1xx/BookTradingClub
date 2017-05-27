@@ -1,6 +1,6 @@
 FROM node:latest
 
-ENV PORT= 4000
+ENV PORT=4000
 
 RUN mkdir -p /var/www/config/
 

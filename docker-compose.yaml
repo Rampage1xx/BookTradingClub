@@ -12,7 +12,7 @@ services:
     volumes:
      - ./nginx/:/etc/nginx/
      - ./nginx/conf.nginx:/etc/nginx/nginx.conf
-     - ./Backend/Compiled/dist/:/etc/nginx/html/app1/
+     - ./Server/Compiled/dist/:/etc/nginx/html/app1/
     ports:
      - '80:80'
     depends_on:
@@ -70,13 +70,18 @@ services:
     build:
       context: .
       dockerfile: nodeb.dockerfile
-    command: ["npm", "run-script","mocha"]
+    #command: ["npm", "run-script","mocha"]
     environment:
       NODE_ENV: test
      # NODE_ENV: development
     depends_on:
      - sqldbb
      - redisb
+    volumes:
+      - ./ServerB/Compiled/:/var/www/
+      - /var/www/node_modules
+      - ./ServerB/package.json:/var/www/package.json
+      - ./ServerB/pm2.config.json:/var/www/pm2.config.json
     ports:
      - "4000:4000"
     networks:

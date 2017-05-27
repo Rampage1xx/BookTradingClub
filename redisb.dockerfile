@@ -1,3 +1,3 @@
-FROM redis: latest
+FROM redis:latest
 
 EXPOSE 5433
