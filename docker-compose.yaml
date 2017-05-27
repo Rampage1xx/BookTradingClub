@@ -1,0 +1,113 @@
+version: '3'
+
+services:
+
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    networks:
+     - nodeapp-network
+    volumes:
+     - ./nginx/:/etc/nginx/
+     - ./nginx/conf.nginx:/etc/nginx/nginx.conf
+     - ./Backend/Compiled/dist/:/etc/nginx/html/app1/
+    ports:
+     - '80:80'
+    depends_on:
+      - node
+
+  redis:
+    image: redis
+    networks:
+     - nodeapp-network
+   # depends_on:
+     # - postgres
+
+
+  sqldb:
+    build:
+      context: .
+      dockerfile: postgres.dockerfile
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: MyNewPass
+      POSTGRES_DB: root
+      DB_USER: meeseeks
+      DB_PASS: MEESEEKS
+      DB_NAME: booktrading
+      DB_NAME2: test
+    ports:
+     - "5432:5432"
+    networks:
+     - nodeapp-network
+
+  node:
+    build:
+      context: .
+      dockerfile: node.dockerfile
+    command: ["npm", "run-script","mocha"]
+   # command: ["pm2-dev","start","pm2.config.json"]
+    environment:
+      NODE_ENV: test
+    #  NODE_ENV: development
+    depends_on:
+     - sqldb
+     - redis
+    volumes:
+      - ./Server/Compiled/:/var/www/
+      - /var/www/node_modules
+      - ./Server/package.json:/var/www/package.json
+      - ./Server/pm2.config.json:/var/www/pm2.config.json
+    #  - ./Server/database/Images.proto:/var/www/database/Images.proto
+    ports:
+     - "3000:3000"
+    networks:
+     - nodeapp-network
+
+  nodeb:
+    build:
+      context: .
+      dockerfile: nodeb.dockerfile
+      command: ["npm", "run-script","mocha"]
+    environment:
+      NODE_ENV: test
+     # NODE_ENV: development
+    depends_on:
+     - sqldbb
+     - redisb
+    ports:
+     - "4000:4000"
+    networks:
+     - nodeapp-network
+
+  sqldbb:
+     build:
+      context: .
+      dockerfile: postgresb.dockerfile
+          environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: MyNewPass
+            POSTGRES_DB: root
+            DB_USER: lookatme
+            DB_PASS: lookatme
+            DB_NAME: handler
+            DB_NAME2: test
+      ports:
+        - "6432:6432"
+      networks:
+        - nodeapp-network
+
+  redisb:
+    build:
+      context: .
+      dockerfile: redisb.dockerfile
+    networks:
+      - nodeapp-network
+    ports:
+      - "5433:5433"
+
+networks:
+  nodeapp-network:
+    driver: bridge

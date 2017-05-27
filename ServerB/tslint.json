@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "tslint-microsoft-contrib"
+  ],
+  "rules": {
+    "variable-name": false,
+    "no-invalid-this": false
+  }
+}

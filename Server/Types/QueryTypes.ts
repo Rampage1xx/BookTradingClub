@@ -1,0 +1,3 @@
+interface IUserBooksGraphQueryQL {
+    UserID: string;
+}
