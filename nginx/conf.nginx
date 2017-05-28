@@ -78,7 +78,7 @@ http {
 
     upstream nodecluster {
         server node:3000;
-        server nodeb:4000;
+    #    server nodeb:4000;
     }
 
 

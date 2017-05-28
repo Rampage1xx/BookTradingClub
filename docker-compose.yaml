@@ -66,52 +66,52 @@ services:
     networks:
      - nodeapp-network
 
-  nodeb:
-    build:
-      context: .
-      dockerfile: nodeb.dockerfile
-    #command: ["npm", "run-script","mocha"]
-    environment:
-      NODE_ENV: test
-     # NODE_ENV: development
-    depends_on:
-     - sqldbb
-     - redisb
-    volumes:
-      - ./ServerB/Compiled/:/var/www/
-      - /var/www/node_modules
-      - ./ServerB/package.json:/var/www/package.json
-      - ./ServerB/pm2.config.json:/var/www/pm2.config.json
-    ports:
-     - "4000:4000"
-    networks:
-     - nodeapp-network
-
-  sqldbb:
-     build:
-       context: .
-       dockerfile: postgresb.dockerfile
-     environment:
-       POSTGRES_USER: root
-       POSTGRES_PASSWORD: MyNewPass
-       POSTGRES_DB: root
-       DB_USER: lookatme
-       DB_PASS: lookatme
-       DB_NAME: handler
-       DB_NAME2: test
-     ports:
-        - "6432:6432"
-     networks:
-        - nodeapp-network
-
-  redisb:
-    build:
-      context: .
-      dockerfile: redisb.dockerfile
-    networks:
-      - nodeapp-network
-    ports:
-      - "5433:5433"
+#  nodeb:
+#    build:
+#      context: .
+#      dockerfile: nodeb.dockerfile
+#    #command: ["npm", "run-script","mocha"]
+#    environment:
+#      NODE_ENV: test
+#     # NODE_ENV: development
+#    depends_on:
+#     - sqldbb
+#     - redisb
+#    volumes:
+#      - ./ServerB/Compiled/:/var/www/
+#      - /var/www/node_modules
+#      - ./ServerB/package.json:/var/www/package.json
+#      - ./ServerB/pm2.config.json:/var/www/pm2.config.json
+#    ports:
+#     - "4000:4000"
+#    networks:
+#     - nodeapp-network
+#
+#  sqldbb:
+#     build:
+#       context: .
+#       dockerfile: postgresb.dockerfile
+#     environment:
+#       POSTGRES_USER: root
+#       POSTGRES_PASSWORD: MyNewPass
+#       POSTGRES_DB: root
+#       DB_USER: lookatme
+#       DB_PASS: lookatme
+#       DB_NAME: handler
+#       DB_NAME2: test
+#     ports:
+#        - "6432:6432"
+#     networks:
+#        - nodeapp-network
+#
+#  redisb:
+#    build:
+#      context: .
+#      dockerfile: redisb.dockerfile
+#    networks:
+#      - nodeapp-network
+#    ports:
+#      - "5433:5433"
 
 networks:
   nodeapp-network:
