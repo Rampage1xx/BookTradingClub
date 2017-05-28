@@ -230,3 +230,5 @@
 172.18.0.1 - - [23/May/2017:19:47:53 +0000] "POST /graphql HTTP/1.1" 200 100 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
 172.18.0.1 - - [23/May/2017:19:47:53 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
 172.18.0.1 - - [23/May/2017:19:47:53 +0000] "POST /graphql HTTP/1.1" 200 1200 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+172.26.0.1 - - [28/May/2017:05:15:37 +0000] "GET /favicon.ico HTTP/1.1" 502 166 "http://rarbg.to/favicon.ico" "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0"
+172.26.0.1 - - [28/May/2017:05:15:37 +0000] "GET /favicon.png HTTP/1.1" 502 166 "http://rarbg.to/favicon.png" "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0"
