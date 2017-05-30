@@ -2,7 +2,7 @@ var webpack = require('webpack');
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin");
-
+var CleanWebpackPlugin = require('clean-webpack-plugin')
 const VENDOR_LIBS = [
     'react', 'react-dom',
     'redux', 'redux-immutable', 'redux-form',
@@ -13,6 +13,17 @@ const VENDOR_LIBS = [
     'react-apollo'
 ];
 
+var pathsToClean = [
+    'dist'
+]
+
+var cleanOptions = {
+    root:     __dirname + '/../Server/Compiled/',
+    exclude:  ['shared.js'],
+    verbose:  true,
+    dry:      false
+}
+
 module.exports = {
     entry: {
         bundle: "./src/index.tsx",
@@ -21,7 +32,7 @@ module.exports = {
     output: {
         filename: "[name].[chunkhash].js",
        // path: __dirname + "/../Server/Compiled/dist/"
-        path: __dirname + "/dist/"
+        path: __dirname + "/../Server/Compiled/dist/"
     },
     // switch to source-map only for production
     devtool: 'eval-source-map',
@@ -86,7 +97,9 @@ module.exports = {
             test: /\.(js|html)$/,
             threshold: 10240,
             minRatio: 0.8
-        })
+        }),
+        new CleanWebpackPlugin(pathsToClean, cleanOptions),
+
     ]
 
 };

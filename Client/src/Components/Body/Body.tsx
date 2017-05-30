@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {LeftSideBody} from './LeftSideBody';
-import {RightSideBody} from './RightSideBody';
+import {RightSideBody} from './RightSide/RightSideBody';
 
 const BodyBox = styled.div`
    flex:1;
-   background: purple;
-   flex-direction: row;
+        border: 1px;
+        border-style:solid;
    display:flex
 `;
 

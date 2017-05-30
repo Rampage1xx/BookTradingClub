@@ -11,7 +11,7 @@ const NavbarBox = styled.div`
 const RightSide = styled.div`
     width: calc(99% * 3/10 - (1rem - 1rem * 1/3));
     background-color: black;
-    height: calc(99% * 5/10 - 0.3rem);
+    height: calc(99% * 7/10 - 0.3rem);
     align-self: center;
     margin: auto;
     `;
@@ -25,13 +25,13 @@ const LeftSide = styled.div`
     justify-content: space-around;
 `;
 const LeftSideChild = styled.div`
-     height: calc(99% * 3/10 - 0.3rem);
+     height: calc(99% * 5/10 - 0.3rem);
     background-color: green;
     width:calc(99% * 2/10 - 0.3rem);
 `;
 
 
-export const Navbar = (props) => {
+export const Navbar = (props?) => {
 
     return (
         <NavbarBox>

@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "installB": "cd ./Server && npm i",
+    "installC": "cd ./Client && npm i",
+    "installPackages": "npm run installB && npm run installC",
+    "buildB": "cd ./Server  && npm run build",
+    "buildC": "cd ./Client  && npm run build",
+    "build": "npm run buildB && npm run buildC && docker-compose build",
+    "setup": "npm run installPackages && npm run build",
+    "start": "docker-compose up",
+    "stop": "docker-compose stop",
+    "remove": "docker-compose rm",
+    "test-client": "cd ./Client && npm run test",
+    "buildBW": "cd ./Server && npm run  build-watch",
+    "buildWatchClient": "cd ./Client && webpack ",
+    "devClient": "rimraf /Server/dist && npm buildWatchClient"
+  },
+  "devDependencies": {
+    "@types/socket.io-client": "^1.4.29",
+    "rimraf": "^2.6.1"
+  }
+}

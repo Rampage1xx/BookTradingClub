@@ -4,6 +4,7 @@
   ],
   "rules": {
     "variable-name": false,
-    "no-invalid-this": false
+    "no-invalid-this": false,
+    "prefer-template": false
   }
 }

@@ -3,6 +3,7 @@
     "tslint-microsoft-contrib"
   ],
   "rules": {
-    "variable-name": false
+    "variable-name": false,
+    "member-ordering": false
   }
 }

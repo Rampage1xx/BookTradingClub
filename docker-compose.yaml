@@ -13,8 +13,11 @@ services:
      - ./nginx/:/etc/nginx/
      - ./nginx/conf.nginx:/etc/nginx/nginx.conf
      - ./Server/Compiled/dist/:/etc/nginx/html/app1/
+     - ./nginx/ssl/server.cert:/etc/nginx/ssl/server.crt
+     - ./nginx/ssl/server.key:/etc/nginx/ssl/server.key
     ports:
      - '80:80'
+     - '443:443'
     depends_on:
       - node
 
@@ -47,11 +50,11 @@ services:
     build:
       context: .
       dockerfile: node.dockerfile
-    command: ["npm", "run-script","mocha"]
-   # command: ["pm2-dev","start","pm2.config.json"]
+   # command: ["npm", "run-script","mocha"]
+    command: ["pm2-dev","start","pm2.config.json"]
     environment:
-      NODE_ENV: test
-    #  NODE_ENV: development
+    #  NODE_ENV: test
+      NODE_ENV: development
     depends_on:
      - sqldb
      - redis
